@@ -9,7 +9,6 @@ import HeaderCom from './components/common/HeaderCom';
 import NotFound from './components/common/NotFound';
 import MDeletePage from './pages/member/MDeletePage';
 
- 
 function App() {
   return (
   <>
@@ -29,5 +28,4 @@ function App() {
   </>
   );
 }
-
 export default App;
