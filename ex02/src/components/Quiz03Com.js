@@ -1,6 +1,6 @@
 function Quiz03Com({inBtn, outBtn, msg, inData, outData}){
     let msg2;
-    if(msg === "aa"){
+    if(msg === ""){
         msg2 = <b>오픈전</b>
     }else{
         msg2 = 
@@ -14,7 +14,7 @@ function Quiz03Com({inBtn, outBtn, msg, inData, outData}){
     
     return (<>
       {msg2}<hr />
-      {(msg === "aa") ? <b>오픈전</b> : 
+      {(msg === "") ? <b>오픈전</b> : 
       <b>
        {msg}<br />
        inData : {inData}<br />
