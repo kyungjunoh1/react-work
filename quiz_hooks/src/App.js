@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import HeaderCom from './components/common/HeaderCom';
+import NotFound from './components/common/NotFound';
+import MListPage from './pages/member/MListPage';
+import MOnePage from './pages/member/MOnePage';
+import MDeletePage from './pages/member/MDeletePage';
+import { Route, Routes } from 'react-router-dom';
+import IndexPage from './pages/IndexPage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return (<>
+    <Routes>
+      <Route element={<HeaderCom />}>
+      <Route path='/' element={<IndexPage />} />
+        <Route path='/member/list' element={<MListPage />} />
+        <Route path='/member/one' element={<MOnePage />} />
+        <Route path='/member/delete/:id' element={<MDeletePage />} />
+      </Route>
+       <Route path='*' element={ <NotFound />} />
+    </Routes>
+  </>
   );
 }
-
 export default App;

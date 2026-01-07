@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 
 function MOneCom( {user} ){
     //const arr = [10,20,30]
