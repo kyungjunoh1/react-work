@@ -1,0 +1,29 @@
+import { Link } from "react-router-dom";
+
+function MListCom({data}){
+    console.log("com : ", data)
+    return (<>
+    <table border={1}>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {data && data.map( d =>
+             <tr key={d.id}>
+              <td>{d.id}</td>
+              <td>
+                <Link to={"/member/one?userId="+d.id}>{d.name}</Link>
+                </td>
+            </tr>
+        )}
+        </tbody>
+    </table>
+     
+    <hr />
+    출력 용도
+    </>)
+}
+export default MListCom;
