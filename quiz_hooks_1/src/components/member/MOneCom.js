@@ -8,12 +8,14 @@ function MOneCom({data, onDelete}){
         <li>addr : {data && data.addr}</li>
         <li><button onClick={ () => onDelete( data.id )}>삭제</button></li>
         <hr />
+        {/*
         {data && <>
            <li>{data.id}</li>
            <li>{data.pwd}</li>
            <li>{data.name}</li>
            <li>{data.addr}</li>
         </>}
+        */}
     </ul>
       
     </>)

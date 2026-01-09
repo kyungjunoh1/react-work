@@ -5,7 +5,7 @@ const HeaderCom = () => {
         <div>
             <header>
                 <Link to="/">HOME</Link> &nbsp;
-                <Link to="/member/list">MEMBER</Link>
+                <Link to="/member/list">MEMBER</Link> &nbsp;
                 <hr />
             </header>
             <main>
