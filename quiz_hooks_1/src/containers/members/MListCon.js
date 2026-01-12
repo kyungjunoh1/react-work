@@ -6,7 +6,18 @@ function MListCon(){
     const [data, setData] = useState([]);
     //console.log(getList())
     useEffect( ()=>{
-     setData( getList());
+        setData(getList())
+         /*
+        const getData = async () => {
+            const res = await getList() 
+            console.log("res : ",res)
+             const data = await res.json() 
+            console.log("data : ",res)
+            setData(data)
+        }
+        getData();*/
+
+     //setData( getList());
     }, [] );
     
     return (<>
