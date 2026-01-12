@@ -1,6 +1,9 @@
 const initalState = {
     login : {id:"", pwd:""},
-    register : {}
+    register : {id: "", pwd: "", name:"", addr:""},
+    data : null,
+    loadding : false,
+    error : null
 }
 export const initalLogin = {id: "", pwd: ""}
 export const initalReg = {id: "", pwd: "", name:"", addr:""}
@@ -10,15 +13,24 @@ const reducer = ( state, action ) => {
     console.log(action)
     switch(action.type){
         case "LOGIN_INPUT" : 
-            return {...state, [action.name] : action.value }
+            return {...state, [action.name] : action.value };
 
         case "REG_INPUT" : 
-            return {...state, [action.name] : action.value }
+            return {...state, [action.name] : action.value };
 
-        case "LIST" : return {data : action.data};
+        case "LIST" : return {...state, data : action.data};
 
-        case "CHANGE_INPUT" : return {...state, [action.form] : 
+        case "CHANGE_INPUT" : 
+            /*dispatch({
+            type : "CHANGE_INPUT",
+            value : 주소,
+            name : addr,
+            form : "register"})*/
+            return {...state, [action.form] : 
             {...state[action.form], [action.name] : action.value} };
+        case "LOADING" : return {...state, loadding:true, error:null};
+        case "FINISHED" : return {...state, loadding:false, error:null};
+        case "ERROR" : return {...state, loadding:false, error:action.msg};
 
         default : return state;
     }
