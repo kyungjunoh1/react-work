@@ -1,6 +1,6 @@
-const LoginCom = ({result, loading, error, onSumbit, onChange, username, pwd}) => {
+const LoginCom = ({result, loading, error, onSubmit, onChange, username, pwd}) => {
     return(<>
-    <form onSubmit={onSumbit}>
+    <form onSubmit={onSubmit}>
     <input type="text" value={username} name="id" onChange={onChange} /><br />
     <input type="text" value={pwd} name="pwd" onChange={onChange} /><br />
     <button disabled={loading}>로그인</button>

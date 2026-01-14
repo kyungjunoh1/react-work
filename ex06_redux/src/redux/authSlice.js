@@ -17,8 +17,6 @@ const authSlice = createSlice({
             sessionStorage.clear();
             return initialState
         }
-            
-          
     }
 });
 export const {login, logout} = authSlice.actions
