@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import { memberThunk } from "../service/memberThunk";
+import { createLoadingReducers } from "./commonLoadingHandlers";
 
 const memberDataSlice = createSlice({
     name : "memberData",
@@ -12,13 +13,15 @@ reducers : {
     }
      */
 },
-extraReducers : (bulider) => {
-        bulider
+extraReducers : (builder) => {
+        builder
+        /*
             .addCase(memberThunk.pending, (state) => {
                 state.loading = true;
                 state.error = null;
                 //console.log("...로딩중");
             })
+                */
             .addCase(memberThunk.fulfilled, (state, action) => {
                 //console.log("데이터 받아옴");
                 //console.log("state : ", state)
@@ -27,11 +30,14 @@ extraReducers : (bulider) => {
                 state.loading = false;
                 state.error = null;
             })
+            /*
             .addCase(memberThunk.rejected, (state, action) => {
                 //console.log("에러 발생 : ", action);
                 state.loading = false;
                 state.error = action.error.message;
             })
+                */
+            createLoadingReducers(builder, memberThunk)
 }
 });
 
