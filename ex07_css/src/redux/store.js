@@ -6,8 +6,8 @@ import authSlice from "./authSlice";
 const store = configureStore({
     reducer: {
         input: inputSlice.reducer,
-        memberDate: memberDataSlice.reducer,
-        auth: authSlice.reducer
+        memberData: memberDataSlice.reducer,
+        auth : authSlice.reducer
     }
 })
 export default store;

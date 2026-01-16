@@ -1,21 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {
-    username : "",
-    password : ""
-};
-
 const inputSlice = createSlice({
     name : 'input',
-    initialState,
+    initialState: {username: "", password: ""},
     reducers: {
         setInput: (state, action) => {
-        const {name, value} = action.payload;
-        state[name] = value;
-        },
-        resetInput: (state) => {
-            state.username = "";
-            state.password = "";
+        state[action.payload.name] = action.payload.value;
         }
     }
 });

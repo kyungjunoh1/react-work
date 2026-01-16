@@ -1,7 +1,10 @@
 .test {color: aqua;}
 #test_id {font-size: 30px;
-font-size: 15px; 
-margin-right: 15px;
-color: aqua;
-text-align: right;
+text-align: center;
+font-weight: bold;
+letter-spacing: 5px; font-size: 20px;
+border-bottom: 1px dotted olive;
+padding-bottom: 5px;
+width: 50%; margin: 0 auto;
+a{ color: darkcyan; &:hover {color: cyan;}}
 }

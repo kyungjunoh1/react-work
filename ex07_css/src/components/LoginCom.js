@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import StyleInput from "./common/Styleput";
 import StyleForm from "./common/StyleForm";
 import StyleButton from "./common/StyleButton";
+import {useDispatch, useSelector} from "react-redux";
+import { setInput } from "../redux/inputSlice";
+import { useEffect } from "react";
+import { loginThunk } from "../service/authThunk";
 
 const AuthBlock = styled.div`
 position: absolute;
@@ -28,16 +32,45 @@ border-radius: 5px;
     }
 `;
 const LoginCom = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { username, password } = useSelector(state => state.input);
+    const { isLoggedIn } = useSelector(state => state.auth);
+
+    const handleChange = (e) => {
+        dispatch(setInput({ name : e.target.name, value: e.target.value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Redux에 저장된 값 : ", {username, password});
+        dispatch(loginThunk({username, password}));
+    }
+    useEffect(() => {
+        if(!isLoggedIn) return;
+        navigate("/");
+    }, [isLoggedIn] );
+
     return (
     <AuthBlock>
         <LoginBox>
             <div className="logo-area">
                 <Link to="/">탱이냥 이동</Link>
             </div>
-            <StyleForm>
-                <StyleInput placeholder="input username"/>
-                <StyleInput placeholder="input password"/>
-                <StyleButton width="100%" background={["145,231,246",0.5]}>로그인</StyleButton>
+            <StyleForm onSubmit={handleSubmit}>
+                <StyleInput
+                name="username"
+                value={username}
+                onChange={handleChange} 
+                placeholder="input username"/>
+                <StyleInput
+                name="password"
+                type="password"
+                value={password}
+                onChange={handleChange} 
+                placeholder="input password"/>
+                <StyleButton type="submit" width="100%" background={["145,231,246",0.5]}>
+                로그인</StyleButton>
             </StyleForm>
         </LoginBox>
     </AuthBlock>)
