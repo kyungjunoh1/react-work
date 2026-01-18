@@ -20,9 +20,9 @@ export const registerThunk = createAsyncThunk(
     "registerThunk",
     async(user) => {
         console.log(user);
-        const exists = data_set.find(d => d.username === user.username);
+        const exists = data_set.find(data => data.username === user.username);
         if(exists) {
-            return { result: 1};
+            return { result: 1, message: "이미 존재하는 사용자입니다" };
         }
         data_set.push({
             username: user.username,
@@ -30,6 +30,64 @@ export const registerThunk = createAsyncThunk(
             role: "USER"
         });
 
-        return { result: 0 };
+        return { result: 0, username: user.username };
     }
+);
+
+export const allMemberListThunk = createAsyncThunk(
+    "allMember",
+    async () => data_set
+);
+
+export const getMemberThunk = createAsyncThunk(
+    "getMember",
+    async() => {
+      return data_set.map(member => ({
+      username: member.username,
+      password: "111",
+      role: member.role
+    }));
+  } 
+);
+
+export const getMemberByIdThunk = createAsyncThunk(
+  "getMemberByIdThunk",
+  async (username) => {
+    const member = data_set.find(data => data.username === username);
+    if (!member) {
+      throw new Error("사용자를 찾을 수 없습니다");
+    }
+    return { ...member };
+  }
+);
+
+export const deleteMemberThunk = createAsyncThunk(
+    "deleteMember",
+    async(username) => {
+        const index = data_set.findIndex(data => data.username === username);
+        
+        if (index === -1) {
+      throw new Error("사용자를 찾을 수 없습니다");
+    }
+    data_set.splice(index, 1);
+    return { username };
+  }
+);
+
+export const updateMemberThunk = createAsyncThunk(
+    "updateMember",
+    async ({ username, updatedData }) => {
+    const index = data_set.findIndex(data => data.username === username);
+    if (index === -1) {
+      throw new Error("사용자를 찾을 수 없습니다");
+    }
+    
+    data_set[index] = {
+      ...data_set[index],
+       password: updatedData.password ? updatedData.password : data_set[index].password,
+       role: updatedData.role ? updatedData.role : data_set[index].role
+    }; 
+    
+    return { ...data_set[index] };
+  }
 );

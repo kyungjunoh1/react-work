@@ -7,7 +7,8 @@ const initialState = {
     username: null,
     loading: false,
     error: null,
-    result: 0
+    result: null,
+    regresult: null
 };
 
 const savedAuth = sessionStorage.getItem("auth");
@@ -31,14 +32,15 @@ const authSlice = createSlice({
             if(result === 0){
                 state.isLoggedIn = true;
                 state.username = username;
-                sessionStorage.setItem("auth", JSON.stringify(state));
+                sessionStorage.setItem("auth", JSON.stringify({isLoggedIn: true, username})
+            );
             }
         });
         builder
         .addCase(registerThunk.fulfilled, (state, action) => {
             state.loading =false;
-            state.result = action.payload.result;
-        })
+            state.regresult = action.payload.result;
+        });
         commonLoadingHandlers(builder, loginThunk);
         commonLoadingHandlers(builder, registerThunk);
     }

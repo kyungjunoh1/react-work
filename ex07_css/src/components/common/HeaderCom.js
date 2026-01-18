@@ -1,19 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {logout} from "../../redux/authSlice";
 
 const WrapBlock = styled.div`
-position: fixed; width : 100%;
+position: static; width : 100%;
 border-bottom : 1px solid rgba(0,0,0,0.1);
 z-index : 1;
 background-color : white;
 `;
-
 const StyleHeader = styled.header`
 margin: 0 auto; width: 1100px;
 display: flex; height: 100px; align-items: center;
-}
 `;
 const StyleTitle = styled.h1`
 width: 200px;
@@ -31,11 +29,10 @@ a {color: black;};
 a:hover {color: gray;;}
 `;
 const HeaderCom = () => {
+    
     const dispatch = useDispatch();
     const { isLoggedIn, username } = useSelector(state => state.auth);
-    const handleLogout = () => {
-        dispatch(logout());
-    }
+    
     return (<>
     <WrapBlock>
         <StyleHeader>
@@ -51,7 +48,10 @@ const HeaderCom = () => {
                 <ul>
                     {isLoggedIn ? <>
                         <li>{username}님</li>
-                        <li><button onClick={handleLogout}>로그아웃</button></li>
+                        <li><button onClick={() => dispatch(logout())}>
+                            로그아웃
+                            </button>
+                        </li>
                     </> : <>
                     <li><Link to="/login">로그인</Link></li>
                     <li><Link to="/register">회원가입</Link></li>

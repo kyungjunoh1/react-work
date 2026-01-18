@@ -34,7 +34,7 @@ const RegisterCom = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { username, password, role } = useSelector(state => state.input);
-    const { regresult } = useSelector(state => state.auth);
+    const { result } = useSelector(state => state.auth);
 
     const handleChange = (e) => {
         dispatch(setInput({
@@ -48,8 +48,10 @@ const RegisterCom = () => {
         dispatch(registerThunk({ username, password, role }));
     };
     useEffect(() => {
-        if(regresult === 0) navigate("/login");
-    }, [regresult, navigate]);
+        if(result === 0) {
+            navigate("/login");
+        }
+    }, [result, navigate]);
 
     return(
         <RegisterBlock>

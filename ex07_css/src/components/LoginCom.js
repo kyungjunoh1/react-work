@@ -47,9 +47,10 @@ const LoginCom = () => {
         dispatch(loginThunk({username, password}));
     }
     useEffect(() => {
-        if(!isLoggedIn) return;
+        if(isLoggedIn) {
         navigate("/");
-    }, [isLoggedIn] );
+    }
+    }, [isLoggedIn, navigate] );
 
     return (
     <AuthBlock>
@@ -62,13 +63,13 @@ const LoginCom = () => {
                 name="username"
                 value={username}
                 onChange={handleChange} 
-                placeholder="input username"/>
+                placeholder="username"/>
                 <StyleInput
                 name="password"
                 type="password"
                 value={password}
                 onChange={handleChange} 
-                placeholder="input password"/>
+                placeholder="password"/>
                 <StyleButton type="submit" width="100%" background={["145,231,246",0.5]}>
                 로그인</StyleButton>
             </StyleForm>

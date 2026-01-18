@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
 import imageFile from "../styles/images/car.png"
 import { StyleContentBlock, StyleContentWrap } from "./common/StyleContent";
 import { ProductContext, ProductImg, ProductList, ProductListBox, ProductName, ProductPrice, ProductTitle } from "./common/StyleProduct";
+import { useNavigate } from "react-router-dom";
+import { getMemberThunk } from "../service/authThunk";
 
 
 const products = [
