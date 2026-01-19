@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import authSlice from "../../redux/authSlice";
+import { StyleContentBlock, StyleContentWrap } from "./StyleContent";
 const WrapBlock = styled.div`
     position: fixed; 
     z-index : 1;
@@ -24,7 +27,14 @@ const StyleNav = styled.nav`
     a {color: black;};
     a:hover { color: gray;};
 `;
+
 const HeaderCom = () => {
+    const {isLoggedIn, username} = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const onLogout = (e) => {
+        e.preventDefault();
+        dispatch( authSlice.actions.logout() );
+    }
     return (<>
         <WrapBlock>
             <StyleHeader>
@@ -35,14 +45,27 @@ const HeaderCom = () => {
                     <ul className="menu">
                         <li><Link to="/">사료</Link></li>
                         <li><Link to="/">간식</Link></li>
+                        <li><Link to="/list">LIST</Link></li>
                     </ul>
                     <ul>
-                        <li><Link to="/login">로그인</Link></li>
-                        <li><Link to="/">회원가입</Link></li>
+                        {isLoggedIn
+                        ?<>
+                            <li><Link to="/logout" onClick={onLogout}>{username}님 로그아웃</Link></li>
+                        </>
+                        :<>
+                            <li><Link to="/login">로그인</Link></li>
+                            <li><Link to="/register">회원가입</Link></li>
+                        </>}
                     </ul>
                 </StyleNav>
             </StyleHeader>
         </WrapBlock>
+
+        <StyleContentBlock>
+            <StyleContentWrap>
+                   <Outlet />              
+            </StyleContentWrap>
+        </StyleContentBlock>
     </>)
 }
 export default HeaderCom;

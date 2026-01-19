@@ -1,0 +1,31 @@
+import styled from "styled-components";
+import { StyleContentBlock, StyleContentWrap } from "./StyleContent";
+import { ProductTitle } from "./StyleProduct";
+import StyledButton from "./StyleButton";
+
+const InfoWrap = styled.div`
+     width: 30%; margin: auto;
+     border: 1px solid gray;
+     border-radius: 5px;
+     font-size: 24px;
+     padding: 20px;
+`;
+const InfoCom = ({data, onDelete, onModifyForm}) => {
+    return(<>
+    
+            <ProductTitle>개 인 정 보</ProductTitle>
+              <InfoWrap>
+                    {data && <>
+                        username<br />
+                        - {data.username}<hr />
+                        password<br />
+                        - {data.password}<hr />
+                        role<br />
+                        - {data.role}<hr />
+                    </>}
+                    <StyledButton onClick={onDelete}>삭제</StyledButton>
+                    <StyledButton onClick={onModifyForm}>수정</StyledButton>
+               </InfoWrap>
+    </>)
+}
+export default InfoCom;

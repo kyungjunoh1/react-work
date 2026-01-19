@@ -16,8 +16,7 @@ const products = [
 
 const IndexCom = () => {
     return (<>
-        <StyleContentBlock>
-            <StyleContentWrap>
+        
                 <ProductTitle>상품 제목~</ProductTitle>
                 <ProductList>
                     {products.map( pro => (
@@ -30,8 +29,7 @@ const IndexCom = () => {
                     ) ) }
                     
                 </ProductList>
-            </StyleContentWrap>
-        </StyleContentBlock>
+          
     </>)
 }
 export default IndexCom;
