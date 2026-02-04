@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeInput} from "../redux/inputSlice"
 import { loginThunk } from "../service/authThunk";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginCon = () => {
     const dispatch = useDispatch();
@@ -30,9 +31,11 @@ const LoginCon = () => {
             //console.log("state password : ", password)
             dispatch( loginThunk({username, password}) );
     }
-    if( isLoggedIn ){
+    useEffect( ()=> {
+        if( isLoggedIn ){
         navigate("/")
     }
+    }, [isLoggedIn,navigate]);
     return (<>
         
         <LoginCom error={error} loading={loading} result={result} onSubmit={onSubmit} onChange={onChange} 

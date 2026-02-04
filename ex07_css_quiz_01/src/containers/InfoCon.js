@@ -15,10 +15,10 @@ const InfoCon = () => {
     useEffect(()=>{
         dispatch( memberOneThunk({username}) )
     }, [dispatch, username])
-
     const navigate = useNavigate();
     const onDelete = () => {
-           dispatch( memberDeleteThunk({username}) );
+        //console.log("dataOne : ", dataOne)
+           dispatch( memberDeleteThunk({username:dataOne.id}) );
            navigate("/list")
     }
     const onModifyForm = () => {
