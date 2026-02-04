@@ -24,7 +24,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.error = null;
             state.result = action.payload.result;
-            if(action.payload.result === 0){
+            if(action.payload.result === 1){
                 state.isLoggedIn = true;
                 state.username = action.payload.username
                 sessionStorage.setItem("auth", JSON.stringify({...state}))

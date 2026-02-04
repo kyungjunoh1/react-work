@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const RegCon = () => {
      const {username, password, role} = 
                              useSelector(state => state.input.register);
+                          
      const dispatch = useDispatch();
      const onChange = (e) => {
         const {name, value} = e.target
